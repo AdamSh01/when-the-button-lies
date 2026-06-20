@@ -1,0 +1,28 @@
+{
+  "condition": "WM-B + conflict-detection prompt",
+  "model": "frontier LLM (retrieval-augmented) with an explicit conflict-detection reasoning step",
+  "prompt_note": "compare the label's usual meaning vs the retrieved behavior; on conflict, predict the behavior and set label_conflict=True with low confidence",
+  "confidence_type": "self_reported",
+  "n": 15,
+  "fields": {
+    "correct": "prediction correctness (did it predict the true next_state)",
+    "flag_correct": "did the label_conflict flag fire correctly (fire on conflict / stay silent on honest)"
+  },
+  "records": [
+    {"block": "01", "tier": "conflict", "confidence": 0.35, "correct": true,  "flag_correct": true,  "note": ""},
+    {"block": "02", "tier": "conflict", "confidence": 0.35, "correct": true,  "flag_correct": true,  "note": ""},
+    {"block": "03", "tier": "conflict", "confidence": 0.35, "correct": false, "flag_correct": false, "note": "missed flag; Back relabeled to advance"},
+    {"block": "04", "tier": "conflict", "confidence": 0.35, "correct": false, "flag_correct": false, "note": "missed flag; Save relabeled to Delete"},
+    {"block": "05", "tier": "conflict", "confidence": 0.35, "correct": true,  "flag_correct": true,  "note": ""},
+    {"block": "06", "tier": "conflict", "confidence": 0.35, "correct": true,  "flag_correct": true,  "note": ""},
+    {"block": "07", "tier": "conflict", "confidence": 0.72, "correct": false, "flag_correct": false, "note": "confidently wrong"},
+    {"block": "08", "tier": "conflict", "confidence": 0.35, "correct": false, "flag_correct": true,  "note": "detect-but-don't-act: flagged the conflict, then predicted the label outcome anyway"},
+    {"block": "09", "tier": "conflict", "confidence": 0.45, "correct": false, "flag_correct": false, "note": "missed flag; Back relabeled to advance"},
+    {"block": "10", "tier": "conflict", "confidence": 0.35, "correct": false, "flag_correct": true,  "note": "detect-but-don't-act: flagged the conflict, then predicted the label outcome anyway"},
+    {"block": "11", "tier": "conflict", "confidence": 0.55, "correct": false, "flag_correct": false, "note": "missed flag"},
+    {"block": "12", "tier": "honest", "confidence": 0.75, "correct": true,  "flag_correct": true,  "note": ""},
+    {"block": "13", "tier": "honest", "confidence": 0.75, "correct": true,  "flag_correct": true,  "note": ""},
+    {"block": "14", "tier": "conflict", "confidence": 0.40, "correct": true,  "flag_correct": false, "note": "prediction right anyway, but flag missed"},
+    {"block": "15", "tier": "honest", "confidence": 0.35, "correct": true,  "flag_correct": false, "note": "false-flag: flagged a conflict on an honest delete"}
+  ]
+}
