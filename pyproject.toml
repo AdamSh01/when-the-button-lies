@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wmeval"
+version = "0.1.0"
+description = "When the Button Lies — a pre-registered pilot on calibrated label–behavior conflict detection for web-agent world models."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Adam Sh" }]
+keywords = ["world-model", "web-agent", "ai-safety", "calibration", "action-validation"]
+dependencies = [
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+# Everything needed to run the tests and regenerate the figure (the documented install).
+dev = [
+    "matplotlib>=3.6",
+    "pytest>=7.0",
+]
+# Heavy deps for reproducing the WebWorld-8B run (scripts/run_webworld.py). Optional
+# because it pulls torch/transformers; the rest of the repo does not need them.
+webworld = [
+    "torch>=2.1",
+    "transformers>=4.44",
+    "accelerate>=0.30",
+    "bitsandbytes>=0.43",
+]
+
+[project.urls]
+Repository = "https://github.com/AdamSh01/when-the-button-lies"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "src"]
